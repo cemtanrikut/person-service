@@ -10,12 +10,12 @@ import (
 
 // Build repo
 type PersonHandler struct {
-	repository repo.PersonRepository
+	Repository repo.PersonRepository
 }
 
 func NewPersonHandler() *PersonHandler {
 	return &PersonHandler{
-		repository: repo.NewDynamoDBRepository(),
+		Repository: repo.NewDynamoDBRepository(),
 	}
 }
 
@@ -35,7 +35,7 @@ func (h *PersonHandler) createPerson(ctx context.Context, request model.PersonRe
 		return model.PersonResponse{StatusCode: http.StatusBadRequest}, err
 	}
 
-	err = h.repository.CreatePerson(ctx, person)
+	err = h.Repository.CreatePerson(ctx, person)
 	if err != nil {
 		return model.PersonResponse{StatusCode: http.StatusInternalServerError}, err
 	}

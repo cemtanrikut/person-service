@@ -27,7 +27,7 @@ describe('PersonServiceStack', () => {
       Environment: {
         Variables: {
           TABLE_NAME: {
-            Ref: expect.anything()
+            Ref: "Persons849CB0C3"
           }
         }
       }

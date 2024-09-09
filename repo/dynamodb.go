@@ -5,9 +5,9 @@ import (
 	"person-service/model"
 
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
+	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbiface"
 )
 
 // Interfaces
@@ -16,14 +16,12 @@ type PersonRepository interface {
 }
 
 type DynamoDBRepository struct {
-	client *dynamodb.DynamoDB
+	Client dynamodbiface.DynamoDBAPI // Using the interface type here
 }
 
-// Build new dynamo repo
-func NewDynamoDBRepository() *DynamoDBRepository {
-	sess := session.Must(session.NewSession())
+func NewDynamoDBRepository(client dynamodbiface.DynamoDBAPI) *DynamoDBRepository {
 	return &DynamoDBRepository{
-		client: dynamodb.New(sess),
+		Client: client,
 	}
 }
 
@@ -38,6 +36,6 @@ func (repo *DynamoDBRepository) CreatePerson(ctx context.Context, person model.P
 		Item:      av,
 	}
 
-	_, err = repo.client.PutItemWithContext(ctx, input)
+	_, err = repo.Client.PutItemWithContext(ctx, input)
 	return err
 }

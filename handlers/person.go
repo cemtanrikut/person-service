@@ -6,6 +6,9 @@ import (
 	"net/http"
 	"person-service/model"
 	"person-service/repo"
+
+	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/aws/aws-sdk-go/service/dynamodb"
 )
 
 // Build repo
@@ -14,8 +17,15 @@ type PersonHandler struct {
 }
 
 func NewPersonHandler() *PersonHandler {
+	// AWS session creating
+	sess := session.Must(session.NewSession())
+
+	// DynamoDB client creates with sess
+	dynamoClient := dynamodb.New(sess)
+
+	// repo.NewDynamoDBRepository func gets DynamoDB client example
 	return &PersonHandler{
-		Repository: repo.NewDynamoDBRepository(),
+		Repository: repo.NewDynamoDBRepository(dynamoClient),
 	}
 }
 

@@ -1,8 +1,6 @@
 import { Stack, StackProps } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-import * as lambda from 'aws-cdk-lib/aws-lambda';
-import * as dynamodb from 'aws-cdk-lib/aws-dynamodb';
-import * as apigateway from 'aws-cdk-lib/aws-apigateway';
+import { aws_lambda as lambda, aws_dynamodb as dynamodb, aws_apigateway as apigateway } from 'aws-cdk-lib';
 
 export class PersonServiceStack extends Stack {
     constructor(scope: Construct, id: string, props?: StackProps) {

@@ -1,17 +1,36 @@
-// import * as cdk from 'aws-cdk-lib';
-// import { Template } from 'aws-cdk-lib/assertions';
-// import * as PersonServiceCdk from '../lib/person-service-cdk-stack';
+import { Template } from '@aws-cdk/assertions';
+import { PersonServiceStack } from './person-service-cdk-stack';
+import { App } from 'aws-cdk-lib';
 
-// example test. To run these tests, uncomment this file along with the
-// example resource in lib/person-service-cdk-stack.ts
-test('SQS Queue Created', () => {
-//   const app = new cdk.App();
-//     // WHEN
-//   const stack = new PersonServiceCdk.PersonServiceCdkStack(app, 'MyTestStack');
-//     // THEN
-//   const template = Template.fromStack(stack);
+describe('PersonServiceStack', () => {
+  const app = new App();
+  const stack = new PersonServiceStack(app, 'PersonServiceStackTest');
 
-//   template.hasResourceProperties('AWS::SQS::Queue', {
-//     VisibilityTimeout: 300
-//   });
+  // Örnek bir template oluşturun
+  const template = Template.fromStack(stack);
+
+  it('has a DynamoDB table', () => {
+    template.resourceCountIs('AWS::DynamoDB::Table', 1);
+  });
+
+  it('has a Lambda function', () => {
+    template.resourceCountIs('AWS::Lambda::Function', 1);
+  });
+
+  it('has an API Gateway', () => {
+    template.resourceCountIs('AWS::ApiGateway::RestApi', 1);
+  });
+
+  // Lambda fonksiyonunun doğru ortam değişkenlerine sahip olduğunu kontrol edin
+  it('Lambda has correct environment variables', () => {
+    template.hasResourceProperties('AWS::Lambda::Function', {
+      Environment: {
+        Variables: {
+          TABLE_NAME: {
+            Ref: expect.anything() // DynamoDB tablo isminin referansını kontrol eder
+          }
+        }
+      }
+    });
+  });
 });

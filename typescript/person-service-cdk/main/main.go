@@ -34,9 +34,7 @@ func handlePost(request events.APIGatewayProxyRequest) (*events.APIGatewayProxyR
 	if err != nil {
 		return apiResponse(http.StatusBadRequest, "Invalid request body")
 	}
-	// Kişi veritabanına kaydedilir, burada basit bir loglama yapılıyor
 	fmt.Printf("Saving person: %+v\n", person)
-	// Veritabanı kaydı başarılı olduğu varsayılıyor
 	return apiResponse(http.StatusOK, "Person created")
 }
 

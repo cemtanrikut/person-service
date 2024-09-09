@@ -1,6 +1,7 @@
-import { Template } from '@aws-cdk/assertions';
-import { PersonServiceStack } from './person-service-cdk-stack';
+// Import CDK testing modules
+import { Template } from 'aws-cdk-lib/assertions';
 import { App } from 'aws-cdk-lib';
+import { PersonServiceStack } from '../lib/person-service-cdk-stack';
 
 describe('PersonServiceStack', () => {
   const app = new App();

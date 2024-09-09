@@ -39,7 +39,6 @@ func handlePost(request events.APIGatewayProxyRequest) (*events.APIGatewayProxyR
 }
 
 func handleGet(request events.APIGatewayProxyRequest) (*events.APIGatewayProxyResponse, error) {
-	// Burada tüm kişileri listeleme işlemi yapılacaktır
 	people := []Person{
 		{FirstName: "John", LastName: "Doe", PhoneNumber: "1234567890", Address: "123 Elm St"},
 		{FirstName: "Jane", LastName: "Doe", PhoneNumber: "0987654321", Address: "456 Oak St"},

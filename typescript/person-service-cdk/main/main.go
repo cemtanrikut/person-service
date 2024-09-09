@@ -38,7 +38,7 @@ func handlePost(request events.APIGatewayProxyRequest) (*events.APIGatewayProxyR
 	return apiResponse(http.StatusOK, "Person created")
 }
 
-func handleGet(request events.APIGatewayProxyRequest) (*events.APIGatewayProxyResponse, error) {
+func handleGet(_ events.APIGatewayProxyRequest) (*events.APIGatewayProxyResponse, error) {
 	people := []Person{
 		{FirstName: "John", LastName: "Doe", PhoneNumber: "1234567890", Address: "123 Elm St"},
 		{FirstName: "Jane", LastName: "Doe", PhoneNumber: "0987654321", Address: "456 Oak St"},

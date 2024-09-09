@@ -16,7 +16,7 @@ AWS CLI v2
 AWS account and configured AWS CLI
 ```
 
-### Installing
+## Installing
 
 A step by step series of examples how to get a development env running:
 
@@ -33,7 +33,7 @@ Install the necessary dependencies:
 make deps
 ```
 
-### Running the tests
+## Running the tests
 
 How to run the automated tests for this system:
 
@@ -41,7 +41,7 @@ How to run the automated tests for this system:
 make test
 ```
 
-### Deployment
+## Deployment
 
 How to deploy this on a live system:
 
@@ -49,12 +49,12 @@ How to deploy this on a live system:
 make build
 ```
 
-### Built with
+## Built with
 
 - Go - The primary programming language
 - AWS Lambda - Serverless compute service
 - DynamoDB - NoSQL database service
 
-### License
+## License
 
 This project is licensed under the MIT License

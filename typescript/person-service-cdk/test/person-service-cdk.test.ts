@@ -22,13 +22,12 @@ describe('PersonServiceStack', () => {
     template.resourceCountIs('AWS::ApiGateway::RestApi', 1);
   });
 
-  // Lambda fonksiyonunun doğru ortam değişkenlerine sahip olduğunu kontrol edin
   it('Lambda has correct environment variables', () => {
     template.hasResourceProperties('AWS::Lambda::Function', {
       Environment: {
         Variables: {
           TABLE_NAME: {
-            Ref: expect.anything() // DynamoDB tablo isminin referansını kontrol eder
+            Ref: expect.anything()
           }
         }
       }
